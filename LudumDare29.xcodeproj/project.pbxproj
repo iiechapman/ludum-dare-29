@@ -8,6 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		4E045E84190BE6AA0086D957 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E045E83190BE6AA0086D957 /* main.cpp */; };
+		4E045E8C190BF5BE0086D957 /* GameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E045E8A190BF5BE0086D957 /* GameObject.cpp */; };
+		4E045E8F190BF76B0086D957 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E045E8D190BF76B0086D957 /* Player.cpp */; };
+		4E045E92190BFA110086D957 /* TextureManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E045E90190BFA110086D957 /* TextureManager.cpp */; };
+		4E045E9A190BFA440086D957 /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E045E93190BFA310086D957 /* SDL2_image.framework */; };
+		4E045E9B190BFA440086D957 /* SDL2_mixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E045E94190BFA310086D957 /* SDL2_mixer.framework */; };
+		4E045E9C190BFA440086D957 /* SDL2_ttf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E045E95190BFA310086D957 /* SDL2_ttf.framework */; };
+		4E045E9F190BFF570086D957 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E045E9D190BFF570086D957 /* Game.cpp */; };
+		4E045EA2190C22120086D957 /* GameObjectParams.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E045EA0190C22120086D957 /* GameObjectParams.cpp */; };
+		4E045EA5190C2B780086D957 /* InputHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E045EA3190C2B780086D957 /* InputHandler.cpp */; };
+		4E045EA8190C3DCF0086D957 /* GameState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E045EA6190C3DCF0086D957 /* GameState.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +35,23 @@
 /* Begin PBXFileReference section */
 		4E045E80190BE6AA0086D957 /* LudumDare29.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LudumDare29.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E045E83190BE6AA0086D957 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		4E045E8A190BF5BE0086D957 /* GameObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameObject.cpp; sourceTree = "<group>"; };
+		4E045E8B190BF5BE0086D957 /* GameObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameObject.h; sourceTree = "<group>"; };
+		4E045E8D190BF76B0086D957 /* Player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
+		4E045E8E190BF76B0086D957 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		4E045E90190BFA110086D957 /* TextureManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextureManager.cpp; sourceTree = "<group>"; };
+		4E045E91190BFA110086D957 /* TextureManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextureManager.h; sourceTree = "<group>"; };
+		4E045E93190BFA310086D957 /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = /Library/Frameworks/SDL2_image.framework; sourceTree = "<absolute>"; };
+		4E045E94190BFA310086D957 /* SDL2_mixer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_mixer.framework; path = /Library/Frameworks/SDL2_mixer.framework; sourceTree = "<absolute>"; };
+		4E045E95190BFA310086D957 /* SDL2_ttf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_ttf.framework; path = /Library/Frameworks/SDL2_ttf.framework; sourceTree = "<absolute>"; };
+		4E045E9D190BFF570086D957 /* Game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; };
+		4E045E9E190BFF570086D957 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
+		4E045EA0190C22120086D957 /* GameObjectParams.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameObjectParams.cpp; sourceTree = "<group>"; };
+		4E045EA1190C22120086D957 /* GameObjectParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameObjectParams.h; sourceTree = "<group>"; };
+		4E045EA3190C2B780086D957 /* InputHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InputHandler.cpp; sourceTree = "<group>"; };
+		4E045EA4190C2B780086D957 /* InputHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputHandler.h; sourceTree = "<group>"; };
+		4E045EA6190C3DCF0086D957 /* GameState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameState.cpp; sourceTree = "<group>"; };
+		4E045EA7190C3DCF0086D957 /* GameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameState.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +59,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E045E9A190BFA440086D957 /* SDL2_image.framework in Frameworks */,
+				4E045E9B190BFA440086D957 /* SDL2_mixer.framework in Frameworks */,
+				4E045E9C190BFA440086D957 /* SDL2_ttf.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -41,6 +71,7 @@
 		4E045E77190BE6AA0086D957 = {
 			isa = PBXGroup;
 			children = (
+				4E045E99190BFA350086D957 /* Frameworks */,
 				4E045E82190BE6AA0086D957 /* LudumDare29 */,
 				4E045E81190BE6AA0086D957 /* Products */,
 			);
@@ -58,8 +89,32 @@
 			isa = PBXGroup;
 			children = (
 				4E045E83190BE6AA0086D957 /* main.cpp */,
+				4E045E9D190BFF570086D957 /* Game.cpp */,
+				4E045E9E190BFF570086D957 /* Game.h */,
+				4E045EA6190C3DCF0086D957 /* GameState.cpp */,
+				4E045EA7190C3DCF0086D957 /* GameState.h */,
+				4E045EA0190C22120086D957 /* GameObjectParams.cpp */,
+				4E045EA1190C22120086D957 /* GameObjectParams.h */,
+				4E045E8A190BF5BE0086D957 /* GameObject.cpp */,
+				4E045E8B190BF5BE0086D957 /* GameObject.h */,
+				4E045E8D190BF76B0086D957 /* Player.cpp */,
+				4E045E8E190BF76B0086D957 /* Player.h */,
+				4E045E90190BFA110086D957 /* TextureManager.cpp */,
+				4E045E91190BFA110086D957 /* TextureManager.h */,
+				4E045EA3190C2B780086D957 /* InputHandler.cpp */,
+				4E045EA4190C2B780086D957 /* InputHandler.h */,
 			);
 			path = LudumDare29;
+			sourceTree = "<group>";
+		};
+		4E045E99190BFA350086D957 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4E045E93190BFA310086D957 /* SDL2_image.framework */,
+				4E045E94190BFA310086D957 /* SDL2_mixer.framework */,
+				4E045E95190BFA310086D957 /* SDL2_ttf.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -113,7 +168,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E045EA5190C2B780086D957 /* InputHandler.cpp in Sources */,
+				4E045EA8190C3DCF0086D957 /* GameState.cpp in Sources */,
+				4E045E8C190BF5BE0086D957 /* GameObject.cpp in Sources */,
 				4E045E84190BE6AA0086D957 /* main.cpp in Sources */,
+				4E045E8F190BF76B0086D957 /* Player.cpp in Sources */,
+				4E045E92190BFA110086D957 /* TextureManager.cpp in Sources */,
+				4E045EA2190C22120086D957 /* GameObjectParams.cpp in Sources */,
+				4E045E9F190BFF570086D957 /* Game.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,7 +255,10 @@
 		4E045E88190BE6AA0086D957 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = /Library/Frameworks;
+				FRAMEWORK_SEARCH_PATHS = (
+					/Library/Frameworks,
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
 				HEADER_SEARCH_PATHS = (
 					/opt/local/include,
 					/usr/include,
@@ -217,7 +282,10 @@
 		4E045E89190BE6AA0086D957 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = /Library/Frameworks;
+				FRAMEWORK_SEARCH_PATHS = (
+					/Library/Frameworks,
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
 				HEADER_SEARCH_PATHS = (
 					/opt/local/include,
 					/usr/include,
@@ -257,6 +325,7 @@
 				4E045E89190BE6AA0086D957 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
