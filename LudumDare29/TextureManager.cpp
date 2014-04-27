@@ -46,15 +46,17 @@ bool TextureManager::load(string fileName, string textureID, SDL_Renderer* pRend
 }
 
 void TextureManager::draw(string textureID,
-                          int x, int y, int width, int height, SDL_Renderer* pRenderer){
+                          float x, float y, float width, float height, SDL_Renderer* pRenderer){
     
     SDL_Rect srcRect;
     SDL_Rect dstRect;
     
     srcRect.x = 0;
     srcRect.y = 0;
-    srcRect.w = dstRect.w = width;
-    srcRect.h = dstRect.h = height;
+    SDL_QueryTexture(m_textureMap[textureID], 0, 0, &srcRect.w, &srcRect.h);
+    
+    dstRect.w = width;
+    dstRect.h = height;
     dstRect.x = x;
     dstRect.y = y;
     

@@ -5,8 +5,8 @@
 #include <SDL2/SDL.h>
 #include "Game.h"
 
-#define GAME_WIDTH 640
-#define GAME_HEIGHT 480
+#define GAME_WIDTH 1136
+#define GAME_HEIGHT 640
 #define GAME_TITLE "Ludum Dare 29 - Beneath The Surface"
 
 // ============================================================================
@@ -26,7 +26,7 @@ int main(int argc, char* argv[])
             Game::Instance()->update();
             Game::Instance()->render();
             
-            SDL_Delay(10);
+            //SDL_Delay(10);
         }
         
         cout << "Ending Game\n";

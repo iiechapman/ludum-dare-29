@@ -13,10 +13,10 @@
 #include <string>
 
 struct Vector2D{
-    Vector2D(int _x, int _y)
+    Vector2D(float _x, float _y)
     :x(_x),y(_y){}
     
-    int x,y;
+    float x,y;
 };
 
 using namespace std;
@@ -24,33 +24,115 @@ using namespace std;
 class GameObjectParams{
 public:
     GameObjectParams();
-    GameObjectParams(string name,int x, int y, int width, int height,Vector2D velocity, string textureID);
+    GameObjectParams(string name,float x, float y, float width, float height,
+                     Vector2D velocity,bool isHazard,bool isEnemy , string textureID);
     ~GameObjectParams();
     
     GameObjectParams* operator=(GameObjectParams rhs);
     
-    int getX() const { return m_x; }
-    int getY() const { return m_y; }
-    int getWidth() const { return m_width; }
-    int getHeight() const { return m_width; }
+    float getX() const { return m_x; }
+    float getY() const { return m_y; }
+    float getWidth() const { return m_width; }
+    float getHeight() const { return m_height; }
+    bool isHazard() const { return m_isHazard; }
+    bool isEnemy() const { return m_isEnemy; }
     
     Vector2D& getVelocity(){ return m_velocity; }
     
     string getName() const { return m_name; }
     string getTextureID() const { return m_textureID; }
     
-    void setX(int x){ m_x = x;}
-    void setY(int y){ m_y = y;}
+    void setX(float x){ m_x = x;}
+    void setY(float y){ m_y = y;}
+    void setWidth(float width){ m_width = width;}
+    void setHeight(float height){ m_height = height;}
+    void setHazard(bool hazard){ m_isHazard = hazard; }
     
     
-private:
-    int m_x;
-    int m_y;
-    int m_width;
-    int m_height;
+protected:
+    float m_x;
+    float m_y;
+    float m_width;
+    float m_height;
     Vector2D m_velocity;
     string m_name;
     string m_textureID;
+    bool m_isHazard;
+    bool m_isEnemy;
+    
 };
 
 #endif /* defined(__LudumDare29__GameObjectParams__) */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//END

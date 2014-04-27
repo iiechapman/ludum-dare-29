@@ -20,7 +20,9 @@ InputHandler* InputHandler::Instance(){
     return s_pInstance;
 }
 
-InputHandler::InputHandler(){
+InputHandler::InputHandler():
+m_mousePos{0,0}
+{
     cout << "Created input handler\n";
 }
 
@@ -38,6 +40,10 @@ void InputHandler::update(){
             Game::Instance()->quit();
 			break;
 			
+        case SDL_MOUSEMOTION:
+            updateMousePos(p_event);
+            break;
+            
 		case SDL_KEYDOWN:
 		{
 			if (p_event.key.keysym.sym == SDLK_ESCAPE)
@@ -62,6 +68,10 @@ void InputHandler::updateKeys(){
     m_keystates = SDL_GetKeyboardState(0);
 }
 
+Vector2D InputHandler::getMousePos(){
+    return m_mousePos;
+}
+    
 bool InputHandler::isKeyDown(SDL_Scancode key) const {
     if (m_keystates){
         return m_keystates[key];
@@ -69,3 +79,21 @@ bool InputHandler::isKeyDown(SDL_Scancode key) const {
     
     return false;
 }
+
+void InputHandler::updateMousePos(SDL_Event &event){
+    m_mousePos.x = event.motion.x;
+    m_mousePos.y = event.motion.y;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

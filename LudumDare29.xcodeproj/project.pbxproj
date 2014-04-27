@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E02E882190CBEE500520332 /* Background.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E02E880190CBEE500520332 /* Background.cpp */; };
+		4E02E885190D53F600520332 /* Spike.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E02E883190D53F600520332 /* Spike.cpp */; };
 		4E045E84190BE6AA0086D957 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E045E83190BE6AA0086D957 /* main.cpp */; };
 		4E045E8C190BF5BE0086D957 /* GameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E045E8A190BF5BE0086D957 /* GameObject.cpp */; };
 		4E045E8F190BF76B0086D957 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E045E8D190BF76B0086D957 /* Player.cpp */; };
@@ -18,6 +20,8 @@
 		4E045EA2190C22120086D957 /* GameObjectParams.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E045EA0190C22120086D957 /* GameObjectParams.cpp */; };
 		4E045EA5190C2B780086D957 /* InputHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E045EA3190C2B780086D957 /* InputHandler.cpp */; };
 		4E045EA8190C3DCF0086D957 /* GameState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E045EA6190C3DCF0086D957 /* GameState.cpp */; };
+		4E045EAB190C629F0086D957 /* Enemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E045EA9190C629F0086D957 /* Enemy.cpp */; };
+		4E045EAE190C88580086D957 /* Trail.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E045EAC190C88580086D957 /* Trail.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -33,6 +37,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4E02E880190CBEE500520332 /* Background.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Background.cpp; sourceTree = "<group>"; };
+		4E02E881190CBEE500520332 /* Background.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Background.h; sourceTree = "<group>"; };
+		4E02E883190D53F600520332 /* Spike.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Spike.cpp; sourceTree = "<group>"; };
+		4E02E884190D53F600520332 /* Spike.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spike.h; sourceTree = "<group>"; };
 		4E045E80190BE6AA0086D957 /* LudumDare29.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LudumDare29.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E045E83190BE6AA0086D957 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		4E045E8A190BF5BE0086D957 /* GameObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameObject.cpp; sourceTree = "<group>"; };
@@ -52,6 +60,10 @@
 		4E045EA4190C2B780086D957 /* InputHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputHandler.h; sourceTree = "<group>"; };
 		4E045EA6190C3DCF0086D957 /* GameState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameState.cpp; sourceTree = "<group>"; };
 		4E045EA7190C3DCF0086D957 /* GameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameState.h; sourceTree = "<group>"; };
+		4E045EA9190C629F0086D957 /* Enemy.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Enemy.cpp; sourceTree = "<group>"; };
+		4E045EAA190C629F0086D957 /* Enemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enemy.h; sourceTree = "<group>"; };
+		4E045EAC190C88580086D957 /* Trail.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Trail.cpp; sourceTree = "<group>"; };
+		4E045EAD190C88580086D957 /* Trail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Trail.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,8 +109,16 @@
 				4E045EA1190C22120086D957 /* GameObjectParams.h */,
 				4E045E8A190BF5BE0086D957 /* GameObject.cpp */,
 				4E045E8B190BF5BE0086D957 /* GameObject.h */,
+				4E02E880190CBEE500520332 /* Background.cpp */,
+				4E02E881190CBEE500520332 /* Background.h */,
 				4E045E8D190BF76B0086D957 /* Player.cpp */,
 				4E045E8E190BF76B0086D957 /* Player.h */,
+				4E045EA9190C629F0086D957 /* Enemy.cpp */,
+				4E045EAA190C629F0086D957 /* Enemy.h */,
+				4E045EAC190C88580086D957 /* Trail.cpp */,
+				4E045EAD190C88580086D957 /* Trail.h */,
+				4E02E883190D53F600520332 /* Spike.cpp */,
+				4E02E884190D53F600520332 /* Spike.h */,
 				4E045E90190BFA110086D957 /* TextureManager.cpp */,
 				4E045E91190BFA110086D957 /* TextureManager.h */,
 				4E045EA3190C2B780086D957 /* InputHandler.cpp */,
@@ -168,14 +188,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E045EAE190C88580086D957 /* Trail.cpp in Sources */,
 				4E045EA5190C2B780086D957 /* InputHandler.cpp in Sources */,
+				4E02E885190D53F600520332 /* Spike.cpp in Sources */,
 				4E045EA8190C3DCF0086D957 /* GameState.cpp in Sources */,
 				4E045E8C190BF5BE0086D957 /* GameObject.cpp in Sources */,
+				4E045EAB190C629F0086D957 /* Enemy.cpp in Sources */,
 				4E045E84190BE6AA0086D957 /* main.cpp in Sources */,
 				4E045E8F190BF76B0086D957 /* Player.cpp in Sources */,
 				4E045E92190BFA110086D957 /* TextureManager.cpp in Sources */,
 				4E045EA2190C22120086D957 /* GameObjectParams.cpp in Sources */,
 				4E045E9F190BFF570086D957 /* Game.cpp in Sources */,
+				4E02E882190CBEE500520332 /* Background.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -15,7 +15,7 @@ Player::Player(GameObjectParams* params){
 }
 
 Player::~Player(){
-    cout << "Deleted player\n";
+    //cout << "Deleted player\n";
 }
 
 
@@ -28,43 +28,145 @@ void Player::draw(){
 
 void Player::update(){
     
-    bool verticalPressed =
-    InputHandler::Instance()->isKeyDown(SDL_SCANCODE_UP) ||
-    InputHandler::Instance()->isKeyDown(SDL_SCANCODE_DOWN);
+    CheckSpecialModes();
     
-    bool horizontalPressed =
-    InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RIGHT)||
-    InputHandler::Instance()->isKeyDown(SDL_SCANCODE_LEFT);
-    
-    if (!horizontalPressed){
-          m_params->getVelocity().x = 0;
-    }
-    
-    if (!verticalPressed){
-         m_params->getVelocity().y = 0;
-    }
-    
-    if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_UP)){
-        m_params->getVelocity().y = -2;
-    }
-    
-    if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_DOWN)){
-        m_params->getVelocity().y = 2;
-    }
-    
+    m_mousePos.x =InputHandler::Instance()->getMousePos().x - 50;
+    m_mousePos.y =InputHandler::Instance()->getMousePos().y - 30;
 
-    if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_RIGHT)){
-        m_params->getVelocity().x = 2;
+    if (m_params->getX() < m_mousePos.x ){
+        m_params->setX(m_params->getX() + m_velocity.x);
     }
     
-    if (InputHandler::Instance()->isKeyDown(SDL_SCANCODE_LEFT)){
-        m_params->getVelocity().x = -2;
+    if (m_params->getX() > m_mousePos.x ){
+        m_params->setX(m_params->getX() - m_velocity.x);
     }
     
-    m_params->setX( m_params->getX() + m_params->getVelocity().x );
-    m_params->setY( m_params->getY() + m_params->getVelocity().y );
+    
+    if (m_params->getY() < m_mousePos.y ){
+        m_params->setY(m_params->getY() + m_velocity.y);
+    }
+    
+    if (m_params->getY() > m_mousePos.y ){
+        m_params->setY(m_params->getY() - m_velocity.y);
+    }
+    
+}
+
+void Player::CheckSpecialModes(){
+    //Check special modes
+    if (turboMode){
+        m_velocity.x = m_turboSpeed.x;
+        m_velocity.y = m_turboSpeed.y;
+    } else {
+        m_velocity.x = m_baseSpeed.x;
+        m_velocity.y = m_baseSpeed.y;
+    }
+    
+    
+    if (miniMode){
+        //make smaller
+        if (GetParams()->getWidth() > m_miniSize.x){
+            GetParams()->setWidth(GetParams()->getWidth() - m_resizeSpeed);
+        }
+        
+        if (GetParams()->getHeight() > m_miniSize.y){
+            GetParams()->setHeight(GetParams()->getHeight() - m_resizeSpeed);
+        }
+        
+    } else {
+        //make normal size
+        
+        if (GetParams()->getWidth() < m_baseSize.x){
+            GetParams()->setWidth(GetParams()->getWidth() + m_resizeSpeed);
+        }
+        
+        if (GetParams()->getHeight() < m_baseSize.y){
+            GetParams()->setHeight(GetParams()->getHeight() + m_resizeSpeed);
+        }
+    }
+    
+    
+    if (shieldMode){
+        //add shield dont get hurt
+    } else {
+        //get hurt, hide shield
+    }
+    
 }
 
 void Player::clean(){
     cout << "Cleaned player\n";
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//END

@@ -10,6 +10,7 @@
 #define __LudumDare29__InputHandler__
 
 #include <iostream>
+#include "GameObjectParams.h"
 
 using namespace std;
 
@@ -21,15 +22,19 @@ public:
     
     void update();
     bool isKeyDown(SDL_Scancode key) const;
+    Vector2D getMousePos();
 
 
 private:
     InputHandler();
     
     void updateKeys();
+    void updateMousePos(SDL_Event &event);
     
     static InputHandler* s_pInstance;
     const Uint8* m_keystates;
+    
+    Vector2D m_mousePos;
 };
 
 
