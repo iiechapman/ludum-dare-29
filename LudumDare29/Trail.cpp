@@ -22,12 +22,13 @@ Trail::~Trail(){
 void Trail::draw(){
     TextureManager::Instance()->draw(m_params->getTextureID(),
                                      m_params->getX(),m_params->getY(),
-                                     m_params->getWidth(),m_params->getHeight(),
+                                     m_params->getWidth(),m_params->getHeight(),255 ,
                                      Game::Instance()->getRenderer());
 }
 
 void Trail::update(){
     m_params->setX( m_params->getX() + m_params->getVelocity().x );
+    m_params->setY( m_params->getY() + m_params->getVelocity().y );
 }
 
 void Trail::clean(){

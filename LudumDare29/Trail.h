@@ -22,7 +22,8 @@ public:
     void draw();
     void update();
     void clean();
-
+    
+private:
 };
 
 

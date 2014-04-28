@@ -25,7 +25,7 @@ public:
     
     bool load(string fileName, string textureID, SDL_Renderer* pRenderer);
     void draw(string textureID, float x, float y,
-              float width, float height, SDL_Renderer* pRenderer);
+              float width, float height,int alpha, SDL_Renderer* pRenderer);
     
     void clearTextureMap();
     void clean();

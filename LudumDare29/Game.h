@@ -12,8 +12,11 @@
 #include <cmath>
 #include <iostream>
 #include <SDL2/SDL.h>
+#include <SDL2_ttf/SDL_ttf.h>
 #include <vector>
 #include "GameObject.h"
+#include "Background.h"
+
 
 using namespace std;
 
@@ -38,17 +41,27 @@ public:
     void initTest();
     void loadTest();
     void runTest();
+    void PlaceBubble(string type, int x, int y, float x_speed, float y_speed);
     
     static int getLevel();
+    static void setLevel(int level);
+    static void resetMiles();
     
 private:
     Game();
     static Game* s_pInstance;
     
+    void BubbleFill(int numBubbles);
+    void BubbleSplash(int numBubbles);
+    
     void PlaceSpike();
     void PlaceTrail();
     void PlaceBubble();
     void PlaceMileMarker();
+    void PlaceMarker();
+    void PlacePowerup();
+    
+    void ClearOffscreenObjects();
     
     string m_Name;
     SDL_Window* m_pWindow;
@@ -57,8 +70,8 @@ private:
 
     static int s_level;
     
-    int m_mileTimer;
-    int m_mileTimerTick = 30;
+    int m_markerTimer;
+    int m_markerTimerTick = 60;
     
     float m_trailSpeed = -3;
     
@@ -68,9 +81,28 @@ private:
     int m_spikeTimer;
     int m_spikeTimerTick = 100;
     
+    int m_powerupTimer;
+    int m_powerupTimerTick = 100;
+    
+    int m_powerupOdds = 100;
+    int m_spikeOdds = 1000;
+    
+    static int m_bubblesPassed;
+    static int m_bubblesPerMile;
+    
+    static int m_milesPassed;
+    
+    int m_hiScore = 0;
+    
     vector<GameObject*> m_gameObjects;
     vector<GameObject*> m_backgroundObjects;
     vector<GameObject*> m_foregroundObjects;
+    
+    Background* title;
+    Background* score;
+    Background* hi_score;
+    
+    TTF_Font* font;
     
 };
 

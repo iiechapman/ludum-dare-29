@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		4E02E882190CBEE500520332 /* Background.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E02E880190CBEE500520332 /* Background.cpp */; };
 		4E02E885190D53F600520332 /* Spike.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E02E883190D53F600520332 /* Spike.cpp */; };
+		4E02E88B190D6C0300520332 /* Powerup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E02E889190D6C0300520332 /* Powerup.cpp */; };
+		4E02E88E190D8CB300520332 /* SoundManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E02E88C190D8CB300520332 /* SoundManager.cpp */; };
+		4E02E8BD190DE08B00520332 /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E02E89D190DE08B00520332 /* SDL2_image.framework */; };
+		4E02E8BE190DE08B00520332 /* SDL2_mixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E02E89E190DE08B00520332 /* SDL2_mixer.framework */; };
+		4E02E8BF190DE08B00520332 /* SDL2_ttf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E02E89F190DE08B00520332 /* SDL2_ttf.framework */; };
+		4E02E8C0190DE08B00520332 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E02E8A0190DE08B00520332 /* SDL2.framework */; };
 		4E045E84190BE6AA0086D957 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E045E83190BE6AA0086D957 /* main.cpp */; };
 		4E045E8C190BF5BE0086D957 /* GameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E045E8A190BF5BE0086D957 /* GameObject.cpp */; };
 		4E045E8F190BF76B0086D957 /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4E045E8D190BF76B0086D957 /* Player.cpp */; };
@@ -28,8 +34,8 @@
 		4E045E7E190BE6AA0086D957 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
+			dstPath = "";
+			dstSubfolderSpec = 16;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 1;
@@ -41,6 +47,55 @@
 		4E02E881190CBEE500520332 /* Background.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Background.h; sourceTree = "<group>"; };
 		4E02E883190D53F600520332 /* Spike.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Spike.cpp; sourceTree = "<group>"; };
 		4E02E884190D53F600520332 /* Spike.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spike.h; sourceTree = "<group>"; };
+		4E02E889190D6C0300520332 /* Powerup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Powerup.cpp; sourceTree = "<group>"; };
+		4E02E88A190D6C0300520332 /* Powerup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Powerup.h; sourceTree = "<group>"; };
+		4E02E88C190D8CB300520332 /* SoundManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SoundManager.cpp; sourceTree = "<group>"; };
+		4E02E88D190D8CB300520332 /* SoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundManager.h; sourceTree = "<group>"; };
+		4E02E88F190DE08B00520332 /* badtrail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = badtrail.png; path = "../../../../../../Library/Developer/Xcode/DerivedData/LudumDare29-bmkmooefqnmcljdlprjzgakbvnhz/Build/Products/Debug/badtrail.png"; sourceTree = "<group>"; };
+		4E02E890190DE08B00520332 /* best.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = best.png; path = "../../../../../../Library/Developer/Xcode/DerivedData/LudumDare29-bmkmooefqnmcljdlprjzgakbvnhz/Build/Products/Debug/best.png"; sourceTree = "<group>"; };
+		4E02E891190DE08B00520332 /* bg1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg1.png; path = "../../../../../../Library/Developer/Xcode/DerivedData/LudumDare29-bmkmooefqnmcljdlprjzgakbvnhz/Build/Products/Debug/bg1.png"; sourceTree = "<group>"; };
+		4E02E892190DE08B00520332 /* bg2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg2.png; path = "../../../../../../Library/Developer/Xcode/DerivedData/LudumDare29-bmkmooefqnmcljdlprjzgakbvnhz/Build/Products/Debug/bg2.png"; sourceTree = "<group>"; };
+		4E02E893190DE08B00520332 /* bubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bubble.png; path = "../../../../../../Library/Developer/Xcode/DerivedData/LudumDare29-bmkmooefqnmcljdlprjzgakbvnhz/Build/Products/Debug/bubble.png"; sourceTree = "<group>"; };
+		4E02E894190DE08B00520332 /* capsule_mini.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = capsule_mini.png; path = "../../../../../../Library/Developer/Xcode/DerivedData/LudumDare29-bmkmooefqnmcljdlprjzgakbvnhz/Build/Products/Debug/capsule_mini.png"; sourceTree = "<group>"; };
+		4E02E895190DE08B00520332 /* capsule_shield.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = capsule_shield.png; path = "../../../../../../Library/Developer/Xcode/DerivedData/LudumDare29-bmkmooefqnmcljdlprjzgakbvnhz/Build/Products/Debug/capsule_shield.png"; sourceTree = "<group>"; };
+		4E02E896190DE08B00520332 /* capsule_turbo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = capsule_turbo.png; path = "../../../../../../Library/Developer/Xcode/DerivedData/LudumDare29-bmkmooefqnmcljdlprjzgakbvnhz/Build/Products/Debug/capsule_turbo.png"; sourceTree = "<group>"; };
+		4E02E897190DE08B00520332 /* entrancebubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = entrancebubble.png; path = "../../../../../../Library/Developer/Xcode/DerivedData/LudumDare29-bmkmooefqnmcljdlprjzgakbvnhz/Build/Products/Debug/entrancebubble.png"; sourceTree = "<group>"; };
+		4E02E898190DE08B00520332 /* font.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = font.ttf; path = "../../../../../../Library/Developer/Xcode/DerivedData/LudumDare29-bmkmooefqnmcljdlprjzgakbvnhz/Build/Products/Debug/font.ttf"; sourceTree = "<group>"; };
+		4E02E899190DE08B00520332 /* goalbubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = goalbubble.png; path = "../../../../../../Library/Developer/Xcode/DerivedData/LudumDare29-bmkmooefqnmcljdlprjzgakbvnhz/Build/Products/Debug/goalbubble.png"; sourceTree = "<group>"; };
+		4E02E89A190DE08B00520332 /* hiscore.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = hiscore.png; path = "../../../../../../Library/Developer/Xcode/DerivedData/LudumDare29-bmkmooefqnmcljdlprjzgakbvnhz/Build/Products/Debug/hiscore.png"; sourceTree = "<group>"; };
+		4E02E89B190DE08B00520332 /* redtrail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = redtrail.png; path = "../../../../../../Library/Developer/Xcode/DerivedData/LudumDare29-bmkmooefqnmcljdlprjzgakbvnhz/Build/Products/Debug/redtrail.png"; sourceTree = "<group>"; };
+		4E02E89C190DE08B00520332 /* score.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = score.png; path = "../../../../../../Library/Developer/Xcode/DerivedData/LudumDare29-bmkmooefqnmcljdlprjzgakbvnhz/Build/Products/Debug/score.png"; sourceTree = "<group>"; };
+		4E02E89D190DE08B00520332 /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = "../../../../../../Library/Developer/Xcode/DerivedData/LudumDare29-bmkmooefqnmcljdlprjzgakbvnhz/Build/Products/Debug/SDL2_image.framework"; sourceTree = "<group>"; };
+		4E02E89E190DE08B00520332 /* SDL2_mixer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_mixer.framework; path = "../../../../../../Library/Developer/Xcode/DerivedData/LudumDare29-bmkmooefqnmcljdlprjzgakbvnhz/Build/Products/Debug/SDL2_mixer.framework"; sourceTree = "<group>"; };
+		4E02E89F190DE08B00520332 /* SDL2_ttf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_ttf.framework; path = "../../../../../../Library/Developer/Xcode/DerivedData/LudumDare29-bmkmooefqnmcljdlprjzgakbvnhz/Build/Products/Debug/SDL2_ttf.framework"; sourceTree = "<group>"; };
+		4E02E8A0190DE08B00520332 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = "../../../../../../Library/Developer/Xcode/DerivedData/LudumDare29-bmkmooefqnmcljdlprjzgakbvnhz/Build/Products/Debug/SDL2.framework"; sourceTree = "<group>"; };
+		4E02E8A1190DE08B00520332 /* ship1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ship1.png; path = "../../../../../../Library/Developer/Xcode/DerivedData/LudumDare29-bmkmooefqnmcljdlprjzgakbvnhz/Build/Products/Debug/ship1.png"; sourceTree = "<group>"; };
+		4E02E8A2190DE08B00520332 /* ship2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ship2.png; path = "../../../../../../Library/Developer/Xcode/DerivedData/LudumDare29-bmkmooefqnmcljdlprjzgakbvnhz/Build/Products/Debug/ship2.png"; sourceTree = "<group>"; };
+		4E02E8A3190DE08B00520332 /* shipnew.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = shipnew.png; path = "../../../../../../Library/Developer/Xcode/DerivedData/LudumDare29-bmkmooefqnmcljdlprjzgakbvnhz/Build/Products/Debug/shipnew.png"; sourceTree = "<group>"; };
+		4E02E8A4190DE08B00520332 /* smokebubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = smokebubble.png; path = "../../../../../../Library/Developer/Xcode/DerivedData/LudumDare29-bmkmooefqnmcljdlprjzgakbvnhz/Build/Products/Debug/smokebubble.png"; sourceTree = "<group>"; };
+		4E02E8A6190DE08B00520332 /* blip.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = blip.wav; sourceTree = "<group>"; };
+		4E02E8A7190DE08B00520332 /* bubble.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bubble.wav; sourceTree = "<group>"; };
+		4E02E8A8190DE08B00520332 /* bubbles.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bubbles.wav; sourceTree = "<group>"; };
+		4E02E8A9190DE08B00520332 /* death.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = death.wav; sourceTree = "<group>"; };
+		4E02E8AA190DE08B00520332 /* explode.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = explode.wav; sourceTree = "<group>"; };
+		4E02E8AB190DE08B00520332 /* main1.flac */ = {isa = PBXFileReference; lastKnownFileType = file; path = main1.flac; sourceTree = "<group>"; };
+		4E02E8AC190DE08B00520332 /* main1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = main1.mp3; sourceTree = "<group>"; };
+		4E02E8AD190DE08B00520332 /* main1.ogg */ = {isa = PBXFileReference; lastKnownFileType = file; path = main1.ogg; sourceTree = "<group>"; };
+		4E02E8AE190DE08B00520332 /* main2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = main2.mp3; sourceTree = "<group>"; };
+		4E02E8AF190DE08B00520332 /* main2.ogg */ = {isa = PBXFileReference; lastKnownFileType = file; path = main2.ogg; sourceTree = "<group>"; };
+		4E02E8B0190DE08B00520332 /* roots.ogg */ = {isa = PBXFileReference; lastKnownFileType = file; path = roots.ogg; sourceTree = "<group>"; };
+		4E02E8B1190DE08B00520332 /* shield.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = shield.wav; sourceTree = "<group>"; };
+		4E02E8B2190DE08B00520332 /* shrink.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = shrink.wav; sourceTree = "<group>"; };
+		4E02E8B3190DE08B00520332 /* smallbubble.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = smallbubble.wav; sourceTree = "<group>"; };
+		4E02E8B4190DE08B00520332 /* smallbubble2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = smallbubble2.wav; sourceTree = "<group>"; };
+		4E02E8B5190DE08B00520332 /* speedup.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = speedup.wav; sourceTree = "<group>"; };
+		4E02E8B6190DE08B00520332 /* splash.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = splash.wav; sourceTree = "<group>"; };
+		4E02E8B7190DE08B00520332 /* splash2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = splash2.wav; sourceTree = "<group>"; };
+		4E02E8B8190DE08B00520332 /* turbo.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = turbo.wav; sourceTree = "<group>"; };
+		4E02E8B9190DE08B00520332 /* spike.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = spike.png; path = "../../../../../../Library/Developer/Xcode/DerivedData/LudumDare29-bmkmooefqnmcljdlprjzgakbvnhz/Build/Products/Debug/spike.png"; sourceTree = "<group>"; };
+		4E02E8BA190DE08B00520332 /* sprites.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sprites.png; path = "../../../../../../Library/Developer/Xcode/DerivedData/LudumDare29-bmkmooefqnmcljdlprjzgakbvnhz/Build/Products/Debug/sprites.png"; sourceTree = "<group>"; };
+		4E02E8BB190DE08B00520332 /* title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = title.png; path = "../../../../../../Library/Developer/Xcode/DerivedData/LudumDare29-bmkmooefqnmcljdlprjzgakbvnhz/Build/Products/Debug/title.png"; sourceTree = "<group>"; };
+		4E02E8BC190DE08B00520332 /* title1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = title1.png; path = "../../../../../../Library/Developer/Xcode/DerivedData/LudumDare29-bmkmooefqnmcljdlprjzgakbvnhz/Build/Products/Debug/title1.png"; sourceTree = "<group>"; };
 		4E045E80190BE6AA0086D957 /* LudumDare29.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LudumDare29.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E045E83190BE6AA0086D957 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		4E045E8A190BF5BE0086D957 /* GameObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameObject.cpp; sourceTree = "<group>"; };
@@ -71,15 +126,46 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4E045E9A190BFA440086D957 /* SDL2_image.framework in Frameworks */,
 				4E045E9B190BFA440086D957 /* SDL2_mixer.framework in Frameworks */,
+				4E02E8BE190DE08B00520332 /* SDL2_mixer.framework in Frameworks */,
+				4E045E9A190BFA440086D957 /* SDL2_image.framework in Frameworks */,
 				4E045E9C190BFA440086D957 /* SDL2_ttf.framework in Frameworks */,
+				4E02E8BF190DE08B00520332 /* SDL2_ttf.framework in Frameworks */,
+				4E02E8BD190DE08B00520332 /* SDL2_image.framework in Frameworks */,
+				4E02E8C0190DE08B00520332 /* SDL2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4E02E8A5190DE08B00520332 /* sound */ = {
+			isa = PBXGroup;
+			children = (
+				4E02E8A6190DE08B00520332 /* blip.wav */,
+				4E02E8A7190DE08B00520332 /* bubble.wav */,
+				4E02E8A8190DE08B00520332 /* bubbles.wav */,
+				4E02E8A9190DE08B00520332 /* death.wav */,
+				4E02E8AA190DE08B00520332 /* explode.wav */,
+				4E02E8AB190DE08B00520332 /* main1.flac */,
+				4E02E8AC190DE08B00520332 /* main1.mp3 */,
+				4E02E8AD190DE08B00520332 /* main1.ogg */,
+				4E02E8AE190DE08B00520332 /* main2.mp3 */,
+				4E02E8AF190DE08B00520332 /* main2.ogg */,
+				4E02E8B0190DE08B00520332 /* roots.ogg */,
+				4E02E8B1190DE08B00520332 /* shield.wav */,
+				4E02E8B2190DE08B00520332 /* shrink.wav */,
+				4E02E8B3190DE08B00520332 /* smallbubble.wav */,
+				4E02E8B4190DE08B00520332 /* smallbubble2.wav */,
+				4E02E8B5190DE08B00520332 /* speedup.wav */,
+				4E02E8B6190DE08B00520332 /* splash.wav */,
+				4E02E8B7190DE08B00520332 /* splash2.wav */,
+				4E02E8B8190DE08B00520332 /* turbo.wav */,
+			);
+			name = sound;
+			path = "../../../../../../Library/Developer/Xcode/DerivedData/LudumDare29-bmkmooefqnmcljdlprjzgakbvnhz/Build/Products/Debug/sound";
+			sourceTree = "<group>";
+		};
 		4E045E77190BE6AA0086D957 = {
 			isa = PBXGroup;
 			children = (
@@ -100,6 +186,33 @@
 		4E045E82190BE6AA0086D957 /* LudumDare29 */ = {
 			isa = PBXGroup;
 			children = (
+				4E02E88F190DE08B00520332 /* badtrail.png */,
+				4E02E890190DE08B00520332 /* best.png */,
+				4E02E891190DE08B00520332 /* bg1.png */,
+				4E02E892190DE08B00520332 /* bg2.png */,
+				4E02E893190DE08B00520332 /* bubble.png */,
+				4E02E894190DE08B00520332 /* capsule_mini.png */,
+				4E02E895190DE08B00520332 /* capsule_shield.png */,
+				4E02E896190DE08B00520332 /* capsule_turbo.png */,
+				4E02E897190DE08B00520332 /* entrancebubble.png */,
+				4E02E898190DE08B00520332 /* font.ttf */,
+				4E02E899190DE08B00520332 /* goalbubble.png */,
+				4E02E89A190DE08B00520332 /* hiscore.png */,
+				4E02E89B190DE08B00520332 /* redtrail.png */,
+				4E02E89C190DE08B00520332 /* score.png */,
+				4E02E8A1190DE08B00520332 /* ship1.png */,
+				4E02E8A2190DE08B00520332 /* ship2.png */,
+				4E02E8A3190DE08B00520332 /* shipnew.png */,
+				4E02E8A4190DE08B00520332 /* smokebubble.png */,
+				4E02E8A5190DE08B00520332 /* sound */,
+				4E02E8B9190DE08B00520332 /* spike.png */,
+				4E02E8BA190DE08B00520332 /* sprites.png */,
+				4E02E8BB190DE08B00520332 /* title.png */,
+				4E02E8BC190DE08B00520332 /* title1.png */,
+				4E02E89D190DE08B00520332 /* SDL2_image.framework */,
+				4E02E89E190DE08B00520332 /* SDL2_mixer.framework */,
+				4E02E89F190DE08B00520332 /* SDL2_ttf.framework */,
+				4E02E8A0190DE08B00520332 /* SDL2.framework */,
 				4E045E83190BE6AA0086D957 /* main.cpp */,
 				4E045E9D190BFF570086D957 /* Game.cpp */,
 				4E045E9E190BFF570086D957 /* Game.h */,
@@ -114,11 +227,15 @@
 				4E045E8D190BF76B0086D957 /* Player.cpp */,
 				4E045E8E190BF76B0086D957 /* Player.h */,
 				4E045EA9190C629F0086D957 /* Enemy.cpp */,
+				4E02E889190D6C0300520332 /* Powerup.cpp */,
+				4E02E88A190D6C0300520332 /* Powerup.h */,
 				4E045EAA190C629F0086D957 /* Enemy.h */,
 				4E045EAC190C88580086D957 /* Trail.cpp */,
 				4E045EAD190C88580086D957 /* Trail.h */,
 				4E02E883190D53F600520332 /* Spike.cpp */,
 				4E02E884190D53F600520332 /* Spike.h */,
+				4E02E88C190D8CB300520332 /* SoundManager.cpp */,
+				4E02E88D190D8CB300520332 /* SoundManager.h */,
 				4E045E90190BFA110086D957 /* TextureManager.cpp */,
 				4E045E91190BFA110086D957 /* TextureManager.h */,
 				4E045EA3190C2B780086D957 /* InputHandler.cpp */,
@@ -192,12 +309,14 @@
 				4E045EA5190C2B780086D957 /* InputHandler.cpp in Sources */,
 				4E02E885190D53F600520332 /* Spike.cpp in Sources */,
 				4E045EA8190C3DCF0086D957 /* GameState.cpp in Sources */,
+				4E02E88B190D6C0300520332 /* Powerup.cpp in Sources */,
 				4E045E8C190BF5BE0086D957 /* GameObject.cpp in Sources */,
 				4E045EAB190C629F0086D957 /* Enemy.cpp in Sources */,
 				4E045E84190BE6AA0086D957 /* main.cpp in Sources */,
 				4E045E8F190BF76B0086D957 /* Player.cpp in Sources */,
 				4E045E92190BFA110086D957 /* TextureManager.cpp in Sources */,
 				4E045EA2190C22120086D957 /* GameObjectParams.cpp in Sources */,
+				4E02E88E190D8CB300520332 /* SoundManager.cpp in Sources */,
 				4E045E9F190BFF570086D957 /* Game.cpp in Sources */,
 				4E02E882190CBEE500520332 /* Background.cpp in Sources */,
 			);
@@ -241,6 +360,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
 			};
 			name = Debug;
 		};
@@ -273,6 +393,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};
@@ -282,6 +403,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					/Library/Frameworks,
 					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/LudumDare29-bmkmooefqnmcljdlprjzgakbvnhz/Build/Products/Debug",
 				);
 				HEADER_SEARCH_PATHS = (
 					/opt/local/include,
@@ -299,6 +421,7 @@
 					SDL2,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
@@ -309,6 +432,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					/Library/Frameworks,
 					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/LudumDare29-bmkmooefqnmcljdlprjzgakbvnhz/Build/Products/Debug",
 				);
 				HEADER_SEARCH_PATHS = (
 					/opt/local/include,
@@ -326,6 +450,7 @@
 					SDL2,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;

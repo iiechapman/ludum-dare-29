@@ -23,20 +23,43 @@ public:
     
 private:
     void CheckSpecialModes();
+    void CheckCollisions();
+    void EjectBubble();
     
-    Vector2D m_baseSpeed{10,5};
-    Vector2D m_turboSpeed{30,20};
+    Vector2D m_baseSpeed{8,4};
+    Vector2D m_turboSpeed{16,10};
     Vector2D m_velocity{m_baseSpeed.x,m_baseSpeed.y};
     Vector2D m_mousePos{0,0};
     
     Vector2D m_baseSize{86,55};
     Vector2D m_miniSize{43,27};
     
-    bool turboMode = false;
-    bool miniMode = false;
-    bool shieldMode = false;
+    bool m_turboMode = false;
+    bool m_miniMode = false;
+    bool m_shieldMode = false;
     
-    float m_resizeSpeed = .8;
+    int m_turboTimer = 0;
+    int m_turboTime = 400;
+    
+    int m_miniTimer = 0;
+    int m_miniTime = 400;
+    
+    int m_shieldTimer= 0;
+    int m_shieldTime = 300;
+    
+    int m_exhaustTimer  = 0;
+    int m_normalExhaust = 10;
+    int m_turboExhaust  = 5;
+
+    float m_normalExhaustSpeed = .06;
+    float m_turboExhaustSpeed = .09;
+    float m_exhastSpeed = m_normalExhaustSpeed;
+    
+    int m_exhaustTime = m_normalExhaust;
+    
+    float m_resizeSpeed = .9;
+    
+    int m_alpha;
     
 };
 

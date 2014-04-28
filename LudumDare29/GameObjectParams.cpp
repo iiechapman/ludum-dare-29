@@ -12,6 +12,8 @@ GameObjectParams::GameObjectParams():
 GameObjectParams("null object",0,0,20,20,Vector2D{0,0},false,false, "null")
 {
     cout << "Null params\n";
+    m_isEnemy = false;
+    m_isHazard = false;
 }
 
 
