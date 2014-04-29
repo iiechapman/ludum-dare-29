@@ -161,13 +161,13 @@ void Player::CheckCollisions(){
             if (hazard != this &&  (hazard->GetParams().isHazard() || hazard->GetParams().isEnemy() )
                 ){
                 
-                Vector2D hazPos{hazard->GetParams().getX(),hazard->GetParams().getY()};
-                Vector2D hazSize{hazard->GetParams().getWidth(),hazard->GetParams().getHeight()};
+                Vector2D hazPos{hazard->GetParams().getX() +5,hazard->GetParams().getY() + 5};
+                Vector2D hazSize{hazard->GetParams().getWidth() -5 ,hazard->GetParams().getHeight() - 5};
                 
         
 
-                Vector2D myPos{GetParams().getX() + 35,GetParams().getY() + 15};
-                Vector2D mySize{GetParams().getWidth() - 35,GetParams().getHeight() - 15};
+                Vector2D myPos{GetParams().getX() + 25,GetParams().getY() + 25};
+                Vector2D mySize{GetParams().getWidth() - 25,GetParams().getHeight() - 25};
                 
                 if (myPos.x + mySize.x >= hazPos.x &&
                     myPos.x <= hazPos.x + hazSize.x &&

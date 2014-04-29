@@ -26,8 +26,8 @@ private:
     void CheckCollisions();
     void EjectBubble();
     
-    Vector2D m_baseSpeed{8,4};
-    Vector2D m_turboSpeed{16,10};
+    Vector2D m_baseSpeed{6,4};
+    Vector2D m_turboSpeed{15,10};
     Vector2D m_velocity{m_baseSpeed.x,m_baseSpeed.y};
     Vector2D m_mousePos{200,300};
     

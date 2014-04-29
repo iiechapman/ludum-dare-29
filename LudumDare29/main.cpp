@@ -26,7 +26,7 @@ int main(int argc, char* argv[])
             Game::Instance()->update();
             Game::Instance()->render();
             
-            SDL_Delay(1);
+            //SDL_Delay(5);
         }
         
         cout << "Ending Game\n";

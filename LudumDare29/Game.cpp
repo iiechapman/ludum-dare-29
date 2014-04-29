@@ -369,7 +369,7 @@ void Game::loadData(){
     TextureManager::Instance()->load("spike.png", "spike", m_pRenderer);
     TextureManager::Instance()->load("badtrail.png", "bluetrail", m_pRenderer);
     TextureManager::Instance()->load("redtrail.png", "redtrail", m_pRenderer);
-    TextureManager::Instance()->load("bg2.png", "bg1", m_pRenderer);
+    TextureManager::Instance()->load("bg3.png", "bg1", m_pRenderer);
     
     TextureManager::Instance()->load("capsule_mini.png", "capsule_mini", m_pRenderer);
     TextureManager::Instance()->load("capsule_turbo.png", "capsule_turbo", m_pRenderer);
