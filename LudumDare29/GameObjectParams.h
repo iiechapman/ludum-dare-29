@@ -28,7 +28,7 @@ public:
                      Vector2D velocity,bool isHazard,bool isEnemy , string textureID);
     ~GameObjectParams();
     
-    GameObjectParams* operator=(GameObjectParams rhs);
+    void operator=(GameObjectParams rhs);
     
     float getX() const { return m_x; }
     float getY() const { return m_y; }

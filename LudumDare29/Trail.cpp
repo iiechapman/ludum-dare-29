@@ -15,7 +15,9 @@ Trail::Trail(GameObjectParams* params){
 }
 
 Trail::~Trail(){
-    //cout << "Deleted Trail\n";
+    delete m_params;
+    m_params = 0;
+    //cout << "Deleted Trail " << endl;
 }
 
 

@@ -20,8 +20,7 @@ InputHandler* InputHandler::Instance(){
     return s_pInstance;
 }
 
-InputHandler::InputHandler():
-m_mousePos{0,0}
+InputHandler::InputHandler()
 {
     cout << "Created input handler\n";
 }

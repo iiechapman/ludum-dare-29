@@ -38,6 +38,7 @@ bool TextureManager::load(string fileName, string textureID, SDL_Renderer* pRend
     if (p_tempTexture){
         m_textureMap[textureID] = p_tempTexture;
         cout << "Texture load succesful\n";
+        p_tempTexture = 0;
         return true;
     }
     

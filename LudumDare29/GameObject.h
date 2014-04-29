@@ -31,7 +31,7 @@ public:
     
     virtual ~GameObject();
     
-    GameObjectParams* GetParams() const;
+    GameObjectParams& GetParams();
     
 protected:
     GameObjectParams* m_params;

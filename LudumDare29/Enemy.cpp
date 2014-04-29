@@ -21,12 +21,12 @@ Enemy* Enemy::s_bottomEnemy = 0;
 
 Enemy::Enemy(GameObjectParams* params){
     m_params        = params;
-    m_upperMax      = 50;
-    m_lowerMax      = 550;
-    m_padding       = 200;
+    m_upperMax      = 5;
+    m_lowerMax      = 600;
+    m_padding       = 180;
     m_upperBounds   = m_upperMax;
     m_lowerBounds   = m_lowerMax;
-    m_speed         = Game::Instance()->getLevel() * .5;
+    m_speed         = Game::Instance()->getLevel() * .6;
     m_randomization = 100;
     s_numEnemies++;
     
@@ -34,6 +34,8 @@ Enemy::Enemy(GameObjectParams* params){
 }
 
 Enemy::~Enemy(){
+    delete m_params;
+    m_params = 0;
     cout << "Deleted Enemy\n";
 }
 
@@ -105,20 +107,20 @@ void Enemy::CheckBounds(){
     
     //Check for top and bottom enemy on screen
     for(auto enemy : Game::Instance()->GetObjects("foreground")){
-        if (enemy->GetParams()->isEnemy()) {
-            if (enemy->GetParams()->getY() > GetBottomEnemy()->GetParams()->getY()){
+        if (enemy->GetParams().isEnemy()) {
+            if (enemy->GetParams().getY() > GetBottomEnemy()->GetParams().getY()){
                 s_bottomEnemy = dynamic_cast<Enemy*>(enemy);
             }
             
-            if (enemy->GetParams()->getY() < GetTopEnemy()->GetParams()->getY()){
+            if (enemy->GetParams().getY() < GetTopEnemy()->GetParams().getY()){
                 s_topEnemy = dynamic_cast<Enemy*>(enemy);
             }
         }
     }
     
     //update global bounds
-    s_upperBounds = s_topEnemy->GetParams()->getY();
-    s_lowerBounds = s_bottomEnemy->GetParams()->getY();
+    s_upperBounds = s_topEnemy->GetParams().getY();
+    s_lowerBounds = s_bottomEnemy->GetParams().getY();
     
 //    if (m_params->getY() > bottomEnemy->GetParams()->getY()){
 //        bottomEnemy = this;
@@ -193,8 +195,8 @@ void Enemy::Randomize(){
 void Enemy::CheckAbove(){
     if (s_numEnemies > 1){
         for (auto enemy : Game::Instance()->GetObjects("foreground")){
-            if (this != enemy && enemy->GetParams()->isEnemy()){
-                int enemy_Y = enemy->GetParams()->getY();
+            if (this != enemy && enemy->GetParams().isEnemy()){
+                int enemy_Y = enemy->GetParams().getY();
                 if (enemy_Y < m_params->getY()){
                     if (enemy_Y > m_upperBounds){
                         m_upperBounds = enemy_Y + m_padding;
@@ -209,8 +211,8 @@ void Enemy::CheckAbove(){
 void Enemy::CheckBelow(){
     if (s_numEnemies > 1){
         for (auto enemy : Game::Instance()->GetObjects("foreground")){
-            if (this != enemy && enemy->GetParams()->isEnemy()){
-                int enemy_Y = enemy->GetParams()->getY();
+            if (this != enemy && enemy->GetParams().isEnemy()){
+                int enemy_Y = enemy->GetParams().getY();
                 if (enemy_Y > m_params->getY()){
                     if (enemy_Y < m_lowerBounds){
                         m_lowerBounds = enemy_Y - m_padding;

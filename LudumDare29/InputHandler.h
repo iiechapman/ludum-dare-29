@@ -34,7 +34,7 @@ private:
     static InputHandler* s_pInstance;
     const Uint8* m_keystates;
     
-    Vector2D m_mousePos;
+    Vector2D m_mousePos{300,300};
 };
 
 

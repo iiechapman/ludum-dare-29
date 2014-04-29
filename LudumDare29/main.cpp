@@ -16,17 +16,17 @@ int main(int argc, char* argv[])
 {
     if(Game::Instance()->init(GAME_WIDTH, GAME_HEIGHT, GAME_TITLE)){
         
-        Game::Instance()->initTest();
-        Game::Instance()->loadTest();
+        Game::Instance()->loadData();
+        Game::Instance()->start();
         
         while (Game::Instance()->running()) {
-            Game::Instance()->runTest();
+            Game::Instance()->run();
             
             Game::Instance()->handleEvents();
             Game::Instance()->update();
             Game::Instance()->render();
             
-            //SDL_Delay(10);
+            SDL_Delay(1);
         }
         
         cout << "Ending Game\n";

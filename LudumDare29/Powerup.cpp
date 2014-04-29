@@ -15,6 +15,8 @@ Powerup::Powerup(GameObjectParams* params){
 }
 
 Powerup::~Powerup(){
+    delete m_params;
+    m_params = 0;
     //cout << "Deleted Powerup\n";
 }
 
@@ -30,11 +32,11 @@ void Powerup::update(){
     
     m_alpha+= 6;
     
-    if (m_params->getY() < Enemy::GetTopEnemy()->GetParams()->getY()){
+    if (m_params->getY() < Enemy::GetTopEnemy()->GetParams().getY()){
         m_direction = DIRECTION_DOWN;
     }
     
-    if (m_params->getY() > Enemy::GetBottomEnemy()->GetParams()->getY()){
+    if (m_params->getY() > Enemy::GetBottomEnemy()->GetParams().getY()){
         m_direction = DIRECTION_UP;
     }
     

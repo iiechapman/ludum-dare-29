@@ -33,11 +33,11 @@ m_textureID(textureID)
 }
 
 GameObjectParams::~GameObjectParams(){
-    cout << "Deleted game object parameters\n";
+    //cout << "Deleted game object parameters\n";
 }
 
 
-GameObjectParams* GameObjectParams::operator=(GameObjectParams rhs){
+void GameObjectParams::operator=(GameObjectParams rhs){
     m_x             = rhs.m_x;
     m_y             = rhs.m_y;
     m_width         = rhs.m_width;
@@ -46,5 +46,5 @@ GameObjectParams* GameObjectParams::operator=(GameObjectParams rhs){
     m_name          = rhs.m_name;
     m_textureID     = rhs.m_textureID;
     
-    return this;
+
 }

@@ -38,10 +38,11 @@ public:
     void quit();
     void clean();
 
-    void initTest();
-    void loadTest();
-    void runTest();
+    void loadData();
+    void start();
+    void run();
     void PlaceBubble(string type, int x, int y, float x_speed, float y_speed);
+    void BubbleSplash(int numBubbles);
     
     static int getLevel();
     static void setLevel(int level);
@@ -52,7 +53,6 @@ private:
     static Game* s_pInstance;
     
     void BubbleFill(int numBubbles);
-    void BubbleSplash(int numBubbles);
     
     void PlaceSpike();
     void PlaceTrail();
@@ -73,7 +73,8 @@ private:
     int m_markerTimer;
     int m_markerTimerTick = 60;
     
-    float m_trailSpeed = -3;
+    float m_trailSpeedMod = .8;
+    float m_trailSpeed = m_trailSpeedMod;
     
     int m_trailTimer;
     int m_trailTimerTick = 4;
@@ -101,8 +102,8 @@ private:
     Background* title;
     Background* score;
     Background* hi_score;
+    Background* cursor;
     
-    TTF_Font* font;
     
 };
 

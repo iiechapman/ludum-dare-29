@@ -15,10 +15,12 @@ GameObject::GameObject(){
 }
 
 GameObject::~GameObject(){
+    delete m_params;
+    m_params = 0;
     //cout << "Deleted game object\n";
 }
 
-GameObjectParams* GameObject::GetParams() const {
-    return m_params;
+GameObjectParams& GameObject::GetParams(){
+    return *m_params;
 }
 

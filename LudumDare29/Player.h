@@ -29,7 +29,7 @@ private:
     Vector2D m_baseSpeed{8,4};
     Vector2D m_turboSpeed{16,10};
     Vector2D m_velocity{m_baseSpeed.x,m_baseSpeed.y};
-    Vector2D m_mousePos{0,0};
+    Vector2D m_mousePos{200,300};
     
     Vector2D m_baseSize{86,55};
     Vector2D m_miniSize{43,27};
@@ -44,8 +44,9 @@ private:
     int m_miniTimer = 0;
     int m_miniTime = 400;
     
-    int m_shieldTimer= 0;
+   
     int m_shieldTime = 300;
+    int m_shieldTimer= m_shieldTime/3;
     
     int m_exhaustTimer  = 0;
     int m_normalExhaust = 10;

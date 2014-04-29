@@ -17,6 +17,8 @@ Player::Player(GameObjectParams* params){
 }
 
 Player::~Player(){
+    delete m_params;
+    m_params = 0;
     //cout << "Deleted player\n";
 }
 
@@ -39,7 +41,7 @@ void Player::update(){
         m_exhaustTimer = m_exhaustTime;
     }
     
-    m_mousePos.x =InputHandler::Instance()->getMousePos().x - 50;
+    m_mousePos.x =InputHandler::Instance()->getMousePos().x - 150;
     m_mousePos.y =InputHandler::Instance()->getMousePos().y - 30;
     
     if (m_params->getX() < m_mousePos.x ){
@@ -64,8 +66,8 @@ void Player::update(){
 }
 
 void Player::EjectBubble(){
-        //SoundManager::Instance()->playSound("smallbubble");
-        Game::Instance()->PlaceBubble("smokebubble",GetParams()->getX() - 10, GetParams()->getY() + 10 , m_exhastSpeed,0);
+    //SoundManager::Instance()->playSound("smallbubble");
+        Game::Instance()->PlaceBubble("smokebubble",GetParams().getX() - 10, GetParams().getY() + 10 , m_exhastSpeed,0);
     }
 
 
@@ -83,6 +85,7 @@ void Player::CheckSpecialModes(){
     
     if (m_shieldTimer <= 0 && m_shieldMode){
         SoundManager::Instance()->playSound("losepowerup");
+        m_alpha = 0;
     }
     
     m_turboMode  = m_turboTimer > 0;
@@ -110,24 +113,24 @@ void Player::CheckSpecialModes(){
     
     if (m_miniMode){
         //make smaller
-        if (GetParams()->getWidth() > m_miniSize.x){
-            GetParams()->setWidth(GetParams()->getWidth() - m_resizeSpeed);
+        if (GetParams().getWidth() > m_miniSize.x){
+            GetParams().setWidth(GetParams().getWidth() - m_resizeSpeed);
         }
         
-        if (GetParams()->getHeight() > m_miniSize.y){
-            GetParams()->setHeight(GetParams()->getHeight() - m_resizeSpeed);
+        if (GetParams().getHeight() > m_miniSize.y){
+            GetParams().setHeight(GetParams().getHeight() - m_resizeSpeed);
         }
         m_miniTimer -= 1;
         
     } else {
         //make normal size
         
-        if (GetParams()->getWidth() < m_baseSize.x){
-            GetParams()->setWidth(GetParams()->getWidth() + m_resizeSpeed);
+        if (GetParams().getWidth() < m_baseSize.x){
+            GetParams().setWidth(GetParams().getWidth() + m_resizeSpeed);
         }
         
-        if (GetParams()->getHeight() < m_baseSize.y){
-            GetParams()->setHeight(GetParams()->getHeight() + m_resizeSpeed);
+        if (GetParams().getHeight() < m_baseSize.y){
+            GetParams().setHeight(GetParams().getHeight() + m_resizeSpeed);
         }
     }
     
@@ -135,10 +138,18 @@ void Player::CheckSpecialModes(){
     if (m_shieldMode){
         //add shield dont get hurt
         m_alpha +=40;
+        if (m_alpha > 255){
+            m_alpha = 0;
+        }
         m_shieldTimer -= 1;
     } else {
         //get hurt, hide shield
-        m_alpha = 255;
+        if (m_alpha < 255){
+         m_alpha +=10;
+            if (m_alpha >=255){
+                m_alpha =255;
+            }
+        }
     }
     
 }
@@ -147,16 +158,16 @@ void Player::CheckCollisions(){
     
     if (!m_shieldMode){
         for (auto hazard : Game::Instance()->GetObjects("foreground")){
-            if (hazard != this &&  (hazard->GetParams()->isHazard() || hazard->GetParams()->isEnemy() )
+            if (hazard != this &&  (hazard->GetParams().isHazard() || hazard->GetParams().isEnemy() )
                 ){
                 
-                Vector2D hazPos{hazard->GetParams()->getX(),hazard->GetParams()->getY()};
-                Vector2D hazSize{hazard->GetParams()->getWidth(),hazard->GetParams()->getHeight()};
+                Vector2D hazPos{hazard->GetParams().getX(),hazard->GetParams().getY()};
+                Vector2D hazSize{hazard->GetParams().getWidth(),hazard->GetParams().getHeight()};
                 
         
 
-                Vector2D myPos{GetParams()->getX() + 35,GetParams()->getY() + 15};
-                Vector2D mySize{GetParams()->getWidth() - 35,GetParams()->getHeight() - 15};
+                Vector2D myPos{GetParams().getX() + 35,GetParams().getY() + 15};
+                Vector2D mySize{GetParams().getWidth() - 35,GetParams().getHeight() - 15};
                 
                 if (myPos.x + mySize.x >= hazPos.x &&
                     myPos.x <= hazPos.x + hazSize.x &&
@@ -166,10 +177,11 @@ void Player::CheckCollisions(){
                     Game::Instance()->setLevel(Game::Instance()->getLevel() - 30);
                     
                     cout << "Death! \n" ;
+                    Game::Instance()->BubbleSplash(200);
                     SoundManager::Instance()->playSound("death");
                     m_turboTimer = m_miniTimer = m_shieldTimer = 0;
-                    GetParams()->setY(320);
-                    GetParams()->setX(-100);
+                    GetParams().setY(320);
+                    GetParams().setX(-100);
                     m_shieldTimer = m_shieldTime / 2;
                     Game::Instance()->resetMiles();
                 }
@@ -178,14 +190,14 @@ void Player::CheckCollisions(){
     }
     
     for (auto powerup : Game::Instance()->GetObjects("foreground")){
-        if (powerup != this &&  (!powerup->GetParams()->isHazard() && !powerup->GetParams()->isEnemy() )
+        if (powerup != this &&  (!powerup->GetParams().isHazard() && !powerup->GetParams().isEnemy() )
             ){
             
-            Vector2D hazPos{powerup->GetParams()->getX(),powerup->GetParams()->getY()};
-            Vector2D hazSize{powerup->GetParams()->getWidth(),powerup->GetParams()->getHeight()};
+            Vector2D hazPos{powerup->GetParams().getX(),powerup->GetParams().getY()};
+            Vector2D hazSize{powerup->GetParams().getWidth(),powerup->GetParams().getHeight()};
             
-            Vector2D myPos{GetParams()->getX(),GetParams()->getY()};
-            Vector2D mySize{GetParams()->getWidth(),GetParams()->getHeight()};
+            Vector2D myPos{GetParams().getX(),GetParams().getY()};
+            Vector2D mySize{GetParams().getWidth(),GetParams().getHeight()};
             
             if (myPos.x + mySize.x >= hazPos.x &&
                 myPos.x <= hazPos.x + hazSize.x &&
@@ -194,20 +206,20 @@ void Player::CheckCollisions(){
                 
                 cout << "Powerup: " ;
                 
-                powerup->GetParams()->setX(-200);
+                powerup->GetParams().setX(-200);
                 
-                if (powerup->GetParams()->getName() == "capsule_mini"){
+                if (powerup->GetParams().getName() == "capsule_mini"){
                     cout << "MINI! \n";
                     SoundManager::Instance()->playSound("capsule_mini");
                     m_miniTimer = m_miniTime;
                 }
                 
-                if (powerup->GetParams()->getName() == "capsule_shield"){
+                if (powerup->GetParams().getName() == "capsule_shield"){
                     cout << "SHIELD! \n";
                     SoundManager::Instance()->playSound("capsule_shield");
                     m_shieldTimer = m_shieldTime;
                 }
-                if (powerup->GetParams()->getName() == "capsule_turbo"){
+                if (powerup->GetParams().getName() == "capsule_turbo"){
                     cout << "TURBO! \n";
                     SoundManager::Instance()->playSound("capsule_turbo");
                     m_turboTimer = m_turboTime;

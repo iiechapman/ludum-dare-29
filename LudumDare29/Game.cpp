@@ -23,7 +23,7 @@ Game* Game::s_pInstance = 0;
 int Game::m_bubblesPerMile = 20;
 int Game::m_milesPassed = 0;
 int Game::m_bubblesPassed = 0;
-int Game::s_level = 6;
+int Game::s_level = 5;
 
 
 
@@ -86,7 +86,10 @@ bool Game::init(int width, int height, string name){
 	m_pRenderer = SDL_CreateRenderer(m_pWindow, -1,
                                      SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
     
-	
+    SDL_WarpMouseInWindow(m_pWindow, 300, 320);
+    SDL_SetRelativeMouseMode(SDL_TRUE);
+    SDL_ShowCursor(SDL_FALSE);
+    TTF_Init();
     
     if (m_pWindow && m_pRenderer){
         cout << "Created window and renderer successfully\n";
@@ -113,6 +116,9 @@ void Game::update(){
         gameObject->update();
     }
     
+    cursor->GetParams().setY(InputHandler::Instance()->getMousePos().y - 31);
+    cursor->GetParams().setX(InputHandler::Instance()->getMousePos().x - 20);
+    
     ClearOffscreenObjects();
     
     if (m_bubblesPassed >= m_bubblesPerMile){
@@ -126,7 +132,7 @@ void Game::update(){
         PlaceMileMarker();
     }
     
-    m_trailSpeed = -s_level * .6;
+    m_trailSpeed = -s_level * m_trailSpeedMod;
     //cout << "Total objects on screen " << m_gameObjects.size() << endl;
     
     
@@ -140,62 +146,52 @@ void Game::resetMiles(){
 
 void Game::ClearOffscreenObjects(){
     //clear old items off screen
-    if (m_backgroundObjects.size() > 0){
-        auto gameObject = m_backgroundObjects.begin();
-        
-        while (gameObject !=m_backgroundObjects.end()){
-            if (((*gameObject)->GetParams()->getX() < -100 ||
-                 (*gameObject)->GetParams()->getY() < -100 ) &&
-                ((*gameObject)->GetParams()->isHazard() ||
-                 (*gameObject)->GetParams()->getName() == "bubble" ||
-                 (*gameObject)->GetParams()->isEnemy())){
-                    delete (*gameObject);
-                    (*gameObject) = nullptr;
-                    gameObject = m_backgroundObjects.erase(gameObject);
-                } else {
-                    gameObject++;
-                }
+    
+    auto gameObject = m_backgroundObjects.begin();
+    
+    while (gameObject !=m_backgroundObjects.end()){
+        if (((*gameObject)->GetParams().getX() < -500 ||
+             (*gameObject)->GetParams().getY() < -500 )){
+            delete (*gameObject);
+            (*gameObject) = nullptr;
+            gameObject = m_backgroundObjects.erase(gameObject);
+        } else {
+            gameObject++;
         }
     }
     
     
-    if (m_foregroundObjects.size() > 0){
-        auto gameObject = m_foregroundObjects.begin();
-        
-        while (gameObject !=m_foregroundObjects.end()){
-            if (((*gameObject)->GetParams()->getX() < -100 ||
-                 (*gameObject)->GetParams()->getY() < -100 ) &&
-                ((*gameObject)->GetParams()->isHazard() ||
-                 (*gameObject)->GetParams()->getName() == "bubble" ||
-                 (*gameObject)->GetParams()->isEnemy())){
-                    delete (*gameObject);
-                    (*gameObject) = nullptr;
-                    gameObject = m_foregroundObjects.erase(gameObject);
-                } else {
-                    gameObject++;
-                }
+    gameObject = m_foregroundObjects.begin();
+    
+    while (gameObject !=m_foregroundObjects.end()){
+        if (((*gameObject)->GetParams().getX() < -500 ||
+             (*gameObject)->GetParams().getY() < -500 )){
+            delete (*gameObject);
+            (*gameObject) = nullptr;
+            gameObject = m_foregroundObjects.erase(gameObject);
+        } else {
+            gameObject++;
         }
     }
     
-    if (m_gameObjects.size() > 0){
-        auto gameObject = m_gameObjects.begin();
-        
-        while (gameObject !=m_gameObjects.end()){
-            if (*gameObject){
-                if ((*gameObject)->GetParams()->getX() < -100
-                    && ((*gameObject)->GetParams()->isHazard() ||
-                        (*gameObject)->GetParams()->isEnemy())){
-                        if ((*gameObject)->GetParams()->getName() == "trail"){
-                            m_bubblesPassed++;
-                            //cout << "bubbles passed " << m_bubblesPassed << endl;
-                        }
-                        //cout << "object deleted\n";
-                        delete (*gameObject);
-                        (*gameObject) = nullptr;
-                        gameObject = m_gameObjects.erase(gameObject);
-                    } else {
-                        gameObject++;
-                    }
+    
+    
+    gameObject = m_gameObjects.begin();
+    
+    while (gameObject !=m_gameObjects.end()){
+        if (*gameObject){
+            if (((*gameObject)->GetParams().getX() < -100 ||
+                 (*gameObject)->GetParams().getY() < -100 )){
+                if ((*gameObject)->GetParams().getName() == "trail"){
+                    m_bubblesPassed++;
+                    //cout << "bubbles passed " << m_bubblesPassed << endl;
+                }
+                //cout << "object deleted\n";
+                delete (*gameObject);
+                (*gameObject) = nullptr;
+                gameObject = m_gameObjects.erase(gameObject);
+            } else {
+                gameObject++;
             }
         }
     }
@@ -218,22 +214,26 @@ void Game::render(){
     }
     
     
+    TTF_Font* font;
+    
+    SDL_Surface* text_surface;
+    SDL_Texture* tempTexture;
+    
+    TTF_Init();
+    // load font.ttf at size 16 into font
+    font=TTF_OpenFont("font.ttf", 24);
+    if(!font) {
+        printf("TTF_OpenFont: %s\n", TTF_GetError());
+        // handle error
+    } else {
+        //cout << "font loaded\n";
+    }
     
     SDL_Color color={201,43,43};
-    SDL_Surface *text_surface;
-    SDL_Texture* tempTexture;
+
     
     string normalscore = to_string(m_milesPassed);
     string hiScore = to_string(m_hiScore);
-    
-    if(!(text_surface=TTF_RenderText_Solid(font,normalscore.c_str(),color))) {
-        //handle error here, perhaps print TTF_GetError at least
-        cout << "failed to render text" <<endl;
-    } else {
-        //perhaps we can reuse it, but I assume not for simplicity.
-        tempTexture = SDL_CreateTextureFromSurface(m_pRenderer, text_surface);
-        SDL_FreeSurface(text_surface);
-    }
     
     SDL_Rect dst;
     dst.x = 260;
@@ -241,52 +241,51 @@ void Game::render(){
     dst.w = 60;
     dst.h = 80;
     
-    SDL_RenderCopy(m_pRenderer, tempTexture, NULL, &dst);
-    
-    
-    color={48,226,52};
- 
-    if(!(text_surface=TTF_RenderText_Solid(font,normalscore.c_str(),color))) {
+    if(!(text_surface=TTF_RenderText_Blended(font,normalscore.c_str(),color))) {
         //handle error here, perhaps print TTF_GetError at least
         cout << "failed to render text" <<endl;
     } else {
         //perhaps we can reuse it, but I assume not for simplicity.
         tempTexture = SDL_CreateTextureFromSurface(m_pRenderer, text_surface);
+        SDL_RenderCopy(m_pRenderer, tempTexture, NULL, &dst);
+        SDL_DestroyTexture(tempTexture);
         SDL_FreeSurface(text_surface);
+        tempTexture = 0;
     }
     
+
+    color={48,226,52};
     
     dst.x = 255;
     dst.y = 575;
     dst.w = 60;
     dst.h = 80;
     
-    SDL_RenderCopy(m_pRenderer, tempTexture, NULL, &dst);
-    //--------------------------------------
-
-    
-    //hi score
-    color={201,43,43};
-    
-    if(!(text_surface=TTF_RenderText_Solid(font,hiScore.c_str(),color))) {
+    if(!(text_surface=TTF_RenderText_Solid(font,normalscore.c_str(),color))) {
         //handle error here, perhaps print TTF_GetError at least
         cout << "failed to render text" <<endl;
     } else {
         //perhaps we can reuse it, but I assume not for simplicity.
         tempTexture = SDL_CreateTextureFromSurface(m_pRenderer, text_surface);
+        SDL_RenderCopy(m_pRenderer, tempTexture, NULL, &dst);
+        SDL_DestroyTexture(tempTexture);
         SDL_FreeSurface(text_surface);
+        tempTexture = 0;
     }
     
 
+    
+
+    //--------------------------------------
+    
+    
+    //hi score
+    color={201,43,43};
     dst.x = 1070;
     dst.y = 580;
     dst.w = 60;
     dst.h = 80;
     
-    SDL_RenderCopy(m_pRenderer, tempTexture, NULL, &dst);
-    
-    
-    color={48,226,52};
     
     if(!(text_surface=TTF_RenderText_Solid(font,hiScore.c_str(),color))) {
         //handle error here, perhaps print TTF_GetError at least
@@ -294,26 +293,41 @@ void Game::render(){
     } else {
         //perhaps we can reuse it, but I assume not for simplicity.
         tempTexture = SDL_CreateTextureFromSurface(m_pRenderer, text_surface);
+        SDL_RenderCopy(m_pRenderer, tempTexture, NULL, &dst);
+        SDL_DestroyTexture(tempTexture);
         SDL_FreeSurface(text_surface);
+        tempTexture = 0;
     }
     
     
+    color={48,226,52};
     dst.x = 1065;
     dst.y = 575;
     dst.w = 60;
     dst.h = 80;
+
+
+    if(!(text_surface=TTF_RenderText_Solid(font,hiScore.c_str(),color))) {
+        //handle error here, perhaps print TTF_GetError at least
+        cout << "failed to render text" <<endl;
+    } else {
+        //perhaps we can reuse it, but I assume not for simplicity.
+        tempTexture = SDL_CreateTextureFromSurface(m_pRenderer, text_surface);
+        SDL_RenderCopy(m_pRenderer, tempTexture, NULL, &dst);
+        SDL_DestroyTexture(tempTexture);
+        SDL_FreeSurface(text_surface);
+        tempTexture = 0;
+    }
     
-    SDL_RenderCopy(m_pRenderer, tempTexture, NULL, &dst);
+    SDL_FreeSurface(text_surface);
+
+    TTF_CloseFont(font);
+    TTF_Quit();
+    
+
     //--------------------------------------
     
-    
-    
-    
-    
-    
-    
-    
-    
+    cursor->draw();
     title->draw();
     score->draw();
     hi_score->draw();
@@ -336,17 +350,16 @@ void Game::clean(){
     }
 }
 
-void Game::initTest(){
-    m_trailSpeed = -s_level * .6;
-    
-    TTF_Init();
+void Game::loadData(){
+    m_trailSpeed = -s_level * m_trailSpeedMod;
     
     srand (static_cast<int>(time(NULL)));
+
     
     TextureManager::Instance()->load("title.png", "title", m_pRenderer);
     TextureManager::Instance()->load("score.png", "score", m_pRenderer);
     TextureManager::Instance()->load("best.png", "hi_score", m_pRenderer);
-    
+    TextureManager::Instance()->load("cursor.png", "cursor", m_pRenderer);
     TextureManager::Instance()->load("shipnew.png", "playership", m_pRenderer);
     TextureManager::Instance()->load("ship2.png", "enemyship", m_pRenderer);
     TextureManager::Instance()->load("bubble.png", "bubble", m_pRenderer);
@@ -378,27 +391,18 @@ void Game::initTest(){
     SoundManager::Instance()->loadSound("sound/shrink.wav", "losepowerup");
     
     SoundManager::Instance()->loadSong("sound/main2.ogg", "maintheme");
-
+    
     SoundManager::Instance()->playSound("splash");
     SoundManager::Instance()->playSound("bubbles");
     SoundManager::Instance()->playSong("maintheme");
-
+    
 }
 
-void Game::loadTest(){
-    
-    
- 	
-    // load font.ttf at size 16 into font
-    font=TTF_OpenFont("font.ttf", 24);
-    if(!font) {
-        printf("TTF_OpenFont: %s\n", TTF_GetError());
-        // handle error
-    } else {
-        cout << "font loaded\n";
-    }
+void Game::start(){
+
     
     title = new Background(new GameObjectParams("title",10,10,400,100,{0,0},false,false,"title"));
+    cursor = new Background(new GameObjectParams("title",1000,300,49,49,{0,0},false,false,"cursor"));
     score = new Background(new GameObjectParams("score",5,590,200,50,{0,0},false,false,"score"));
     hi_score = new Background(new GameObjectParams("hi_score",850,590,200,50,{0,0},false,false,"hi_score"));
     
@@ -408,21 +412,21 @@ void Game::loadTest(){
     
     
     m_foregroundObjects.push_back
-    (new Player(new GameObjectParams("player",100,200,86,55,{0,0},false,false,"playership")));
+    (new Player(new GameObjectParams("player",-200,300,86,55,{0,0},false,false,"playership")));
     
     
     m_foregroundObjects.push_back
-    (new Enemy(new GameObjectParams("enemy1",1100,200,75,46,{0,-1},false,true,"enemyship")));
+    (new Enemy(new GameObjectParams("enemy1",1100,40,75,46,{0,-1},false,true,"enemyship")));
     
     m_foregroundObjects.push_back
-    (new Enemy(new GameObjectParams("enemy2",1100,400,75,46,{0,-1},false,true,"enemyship")));
+    (new Enemy(new GameObjectParams("enemy2",1100,560,75,46,{0,-1},false,true,"enemyship")));
     
     for (auto enemy : m_foregroundObjects){
-        if (enemy->GetParams()->isEnemy()){
+        if (enemy->GetParams().isEnemy()){
             m_foregroundObjects.push_back
             (new Trail(new GameObjectParams("entrance",
-                                            enemy->GetParams()->getX() - 60,
-                                            enemy->GetParams()->getY() - 30,
+                                            enemy->GetParams().getX() - 60,
+                                            enemy->GetParams().getY() - 30,
                                             100,100,{m_trailSpeed,0},true,false,"entrance")));
         }
     }
@@ -432,7 +436,7 @@ void Game::loadTest(){
     
 }
 
-void Game::runTest(){
+void Game::run(){
     
     //Tick timers
     m_trailTimer++;
@@ -464,26 +468,26 @@ void Game::runTest(){
     }
     
     //Cap level so game isnt too fast
-    if (s_level >= 50){
-        s_level  = 50;
+    if (s_level >= 100){
+        s_level  = 100;
     }
     
     m_trailTimerTick = 50 / abs(m_trailSpeed);
     
     //Update all scrolling objects to match speed
     for (auto enemy : m_gameObjects){
-        if (enemy->GetParams()->isHazard()){
-            enemy->GetParams()->getVelocity().x = m_trailSpeed;
+        if (enemy->GetParams().isHazard()){
+            enemy->GetParams().getVelocity().x = m_trailSpeed;
         }
     }
     
     for (auto enemy : m_foregroundObjects){
-        if (enemy->GetParams()->getName() == "entrance" ||
-            enemy->GetParams()->getName() == "trail" ||
-            enemy->GetParams()->getName() == "marker"||
-            enemy->GetParams()->getName() == "mile"
+        if (enemy->GetParams().getName() == "entrance" ||
+            enemy->GetParams().getName() == "trail" ||
+            enemy->GetParams().getName() == "marker"||
+            enemy->GetParams().getName() == "mile"
             ){
-            enemy->GetParams()->getVelocity().x = m_trailSpeed;
+            enemy->GetParams().getVelocity().x = m_trailSpeed;
         }
     }
     
@@ -496,10 +500,10 @@ int Game::getLevel(){
 void Game::setLevel(int level){
     s_level = level;
     
-    m_bubblesPerMile = s_level;
+    m_bubblesPerMile = 20;
     
-    if (s_level <= 10){
-        s_level = 10;
+    if (s_level <= 5){
+        s_level = 5;
     }
 }
 
@@ -521,25 +525,28 @@ void Game::BubbleSplash(int numBubbles){
     //Add bubbles in background anywhere and rise up
     
     for (int i = 0 ; i < numBubbles ; i++){
-        float randomSize =-(rand()%5) + 15 +(rand()%25) ;
+        float randomSize =-(rand()%5) + 15 +(rand()%45) ;
         m_backgroundObjects.push_back
         (new Trail(new GameObjectParams("splash",
                                         rand() % 1100,
                                         700 + rand() % 900,
                                         randomSize,randomSize,
-                                        {0,-static_cast<float>((randomSize * .2))},false,false,"bubble")));
+                                        {0,-static_cast<float>((randomSize * .3))},false,false,"bubble")));
     }
 }
 
 void Game::PlaceBubble(){
     //Add bubbles in background
-    float randomSize =-(rand()%5) + 15 +(rand()%25) ;
-    m_backgroundObjects.push_back
-    (new Trail(new GameObjectParams("bubble",
-                                    1300,
-                                    rand() % 700,
-                                    randomSize,randomSize,
-                                    {static_cast<float>(m_trailSpeed * (randomSize * .02)),0},false,false,"bubble")));
+    int numBubbles = 3;
+    for (int i = 0 ; i < numBubbles ; i++){
+        float randomSize =-(rand()%14) + 15 +(rand()%25) ;
+        m_backgroundObjects.push_back
+        (new Trail(new GameObjectParams("bubble",
+                                        1300,
+                                        rand() % 700,
+                                        randomSize,randomSize,
+                                        {static_cast<float>(m_trailSpeed * (randomSize * .02)),0},false,false,"bubble")));
+    }
     
 }
 
@@ -580,7 +587,7 @@ void Game::PlaceSpike(){
 void Game::PlacePowerup(){
     int placePowerup = rand() % m_powerupOdds - s_level;
     
-    cout << "checking for powerup" << endl;
+    //cout << "checking for powerup" << endl;
     
     if (placePowerup <= s_level){
         cout << "place powerup \n";
@@ -629,11 +636,11 @@ void Game::PlaceTrail(){
     //Create trail every trail tick
     for (auto enemy : m_foregroundObjects){
         if (enemy != 0){
-            if (enemy->GetParams()->isEnemy()){
+            if (enemy->GetParams().isEnemy()){
                 m_gameObjects.push_back
                 (new Trail(new GameObjectParams("trail",
-                                                enemy->GetParams()->getX() - 20,
-                                                enemy->GetParams()->getY(),
+                                                enemy->GetParams().getX() - 20,
+                                                enemy->GetParams().getY(),
                                                 40,40,{m_trailSpeed,0},true,false,"bluetrail")));
             }
         }
@@ -645,11 +652,11 @@ void Game::PlaceMileMarker(){
     SoundManager::Instance()->playSound("speedup");
     
     for (auto enemy : m_foregroundObjects){
-        if (enemy->GetParams()->isEnemy()){
+        if (enemy->GetParams().isEnemy()){
             m_foregroundObjects.push_back
             (new Trail(new GameObjectParams("mile",
-                                            enemy->GetParams()->getX() - 20,
-                                            enemy->GetParams()->getY() -10,
+                                            enemy->GetParams().getX() - 20,
+                                            enemy->GetParams().getY() -10,
                                             70,70,{m_trailSpeed,0},true,false,"goal")));
         }
     }
@@ -661,13 +668,13 @@ void Game::PlaceMarker(){
     //Place "pace marker" buoys
     for (auto enemy : m_foregroundObjects){
         if (enemy){
-        if (enemy->GetParams()->isEnemy()){
-            m_foregroundObjects.push_back
-            (new Trail(new GameObjectParams("marker",
-                                            enemy->GetParams()->getX() - 25,
-                                            enemy->GetParams()->getY() -5,
-                                            50,50,{m_trailSpeed,0},true,false,"redtrail")));
-        }
+            if (enemy->GetParams().isEnemy()){
+                m_foregroundObjects.push_back
+                (new Trail(new GameObjectParams("marker",
+                                                enemy->GetParams().getX() - 25,
+                                                enemy->GetParams().getY() -5,
+                                                50,50,{m_trailSpeed,0},true,false,"redtrail")));
+            }
         }
     }
 }
