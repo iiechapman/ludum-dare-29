@@ -121,16 +121,27 @@ void Game::update(){
     
     ClearOffscreenObjects();
     
+    m_mileCoolDownTimer--;
+    
+    if ((m_markerTimer >= m_markerTimerTick) && m_mileCoolDownTimer <=0){
+        PlaceMarker();
+        m_markerTimer = 0;
+    }
+    
     if (m_bubblesPassed >= m_bubblesPerMile){
         s_level++;
-        m_bubblesPerMile += s_level*2;
+        if (s_level < 100){
+            m_bubblesPerMile += s_level/4;
+        }
         m_bubblesPassed = 0;
         m_milesPassed++;
         if (m_milesPassed > m_hiScore){
             m_hiScore = m_milesPassed;
         }
         PlaceMileMarker();
+        m_mileCoolDownTimer = m_mileCoolDownTime;
     }
+
     
     m_trailSpeed = -s_level * m_trailSpeedMod;
     //cout << "Total objects on screen " << m_gameObjects.size() << endl;
@@ -421,16 +432,7 @@ void Game::start(){
     m_foregroundObjects.push_back
     (new Enemy(new GameObjectParams("enemy2",1100,560,75,46,{0,-1},false,true,"enemyship")));
     
-    for (auto enemy : m_foregroundObjects){
-        if (enemy->GetParams().isEnemy()){
-            m_foregroundObjects.push_back
-            (new Trail(new GameObjectParams("entrance",
-                                            enemy->GetParams().getX() - 60,
-                                            enemy->GetParams().getY() - 30,
-                                            100,100,{m_trailSpeed,0},true,false,"entrance")));
-        }
-    }
-    
+    PlaceEntranceMarker();
     BubbleFill(100);
     BubbleSplash(100);
     
@@ -457,10 +459,6 @@ void Game::run(){
         m_trailTimer = 0;
     }
     
-    if (m_markerTimer >= m_markerTimerTick){
-        PlaceMarker();
-        m_markerTimer = 0;
-    }
     
     if (m_powerupTimer >= m_powerupTimerTick){
         PlacePowerup();
@@ -468,8 +466,8 @@ void Game::run(){
     }
     
     //Cap level so game isnt too fast
-    if (s_level >= 100){
-        s_level  = 100;
+    if (s_level >= 80){
+        s_level  = 80;
     }
     
     m_trailTimerTick = 50 / abs(m_trailSpeed);
@@ -500,7 +498,7 @@ int Game::getLevel(){
 void Game::setLevel(int level){
     s_level = level;
     
-    m_bubblesPerMile = 20;
+    m_bubblesPerMile = 50;
     
     if (s_level <= 5){
         s_level = 5;
@@ -562,10 +560,22 @@ void Game::PlaceBubble(string type ,int x, int y, float x_speed, float y_speed){
     
 }
 
+void Game::PlaceEntranceMarker(){
+    for (auto enemy : m_foregroundObjects){
+        if (enemy->GetParams().isEnemy()){
+            m_foregroundObjects.push_back
+            (new Trail(new GameObjectParams("entrance",
+                                            enemy->GetParams().getX() - 60,
+                                            enemy->GetParams().getY() - 30,
+                                            100,100,{m_trailSpeed,0},true,false,"entrance")));
+        }
+    }
+}
+
 void Game::PlaceSpike(){
     int placeSpike = rand() % (m_spikeOdds + s_level);
     
-    if (placeSpike <= 70 - s_level){
+    if (placeSpike <= 80 - s_level){
         
         int endRange = Enemy::GetLowerBounds() - Enemy::GetUpperBounds() + 1 ;
         int beginRange = Enemy::GetUpperBounds() + 1;

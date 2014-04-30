@@ -174,7 +174,7 @@ void Player::CheckCollisions(){
                     myPos.y <= hazPos.y + hazSize.y &&
                     myPos.y + mySize.y >= hazPos.y){
                     
-                    Game::Instance()->setLevel(Game::Instance()->getLevel() - 30);
+                    Game::Instance()->setLevel(0);
                     
                     cout << "Death! \n" ;
                     Game::Instance()->BubbleSplash(200);
@@ -182,6 +182,9 @@ void Player::CheckCollisions(){
                     m_turboTimer = m_miniTimer = m_shieldTimer = 0;
                     GetParams().setY(320);
                     GetParams().setX(-100);
+                    Game::Instance()->PlaceEntranceMarker();
+                    
+                    
                     m_shieldTimer = m_shieldTime / 2;
                     Game::Instance()->resetMiles();
                 }

@@ -31,8 +31,8 @@ InputHandler::~InputHandler(){
 
 void InputHandler::update(){
     SDL_Event p_event;
-    SDL_PollEvent(&p_event);
-    
+
+    while (SDL_PollEvent(&p_event)) {
     switch (p_event.type)
 	{
 		case SDL_QUIT:
@@ -59,7 +59,7 @@ void InputHandler::update(){
             updateKeys();
             break;
         }
-
+    }
 	}
 }
 

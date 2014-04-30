@@ -41,6 +41,7 @@ public:
     void loadData();
     void start();
     void run();
+    void PlaceEntranceMarker();
     void PlaceBubble(string type, int x, int y, float x_speed, float y_speed);
     void BubbleSplash(int numBubbles);
     
@@ -71,7 +72,10 @@ private:
     static int s_level;
     
     int m_markerTimer;
-    int m_markerTimerTick = 60;
+    int m_markerTimerTick = 50;
+    
+    int m_mileCoolDownTime = 10;
+    int m_mileCoolDownTimer = m_mileCoolDownTime;
     
     float m_trailSpeedMod = .8;
     float m_trailSpeed = m_trailSpeedMod;
